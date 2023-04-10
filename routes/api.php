@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\PermController;
+use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\SalesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -15,7 +17,10 @@ use App\Http\Controllers\Api\UserController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/user', [UserController::class, 'index']);
+Route::apiResource('/user', UserController::class);
+Route::apiResource('/role', RoleController::class);
+Route::apiResource('/perm', PermController::class);
+// Route::get('/user/{?$user}', [UserController::class, 'show']);
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();

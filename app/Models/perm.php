@@ -17,4 +17,8 @@ class perm extends Model
         'update',
         'delete',
     ];
+    public function roles()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
 }
