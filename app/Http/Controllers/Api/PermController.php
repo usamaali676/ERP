@@ -27,4 +27,18 @@ class PermController extends Controller
             return self::jsonError($exception->getMessage());
         }
     }
+    public function show(perm $perm)
+    {
+        try {
+            $perm = self::jsonSuccess(message: 'Permission retreived successfully.', data: new PermResource($perm->load('roles')));
+
+            DB::commit();
+
+            return self::jsonSuccess(message: 'Permission retreived successfully!', data: $perm);
+        } catch (Exception $exception) {
+            DB::rollback();
+
+            return self::jsonError($exception->getMessage());
+        }
+    }
 }

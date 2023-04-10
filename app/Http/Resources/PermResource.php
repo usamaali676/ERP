@@ -15,7 +15,9 @@ class PermResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'Role' => $this->whenLoaded('roles'),
+            'Role' => $this->whenLoaded('roles', function (){
+                return new RoleResource($this->roles);
+            }),
             'Module' => $this->name,
             'Create' => $this->create,
             'View' => $this->view,
