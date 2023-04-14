@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\Login;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -21,6 +22,7 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    public $user;
     /**
      * Where to redirect users after login.
      *
@@ -35,6 +37,10 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        // dd("those");
         $this->middleware('guest')->except('logout');
+        $user = auth()->user();
+        event(new Login($user));
     }
+
 }

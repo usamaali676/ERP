@@ -52,8 +52,10 @@ class HomeController extends Controller
     public function profile()
     {
         $user = auth()->user();
+        $logs = $user->authentications;
+        // dd($logs);
 
-        return view('profile', compact('user'));
+        return view('profile', compact('user','logs'));
 
     }
 }
