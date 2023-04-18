@@ -95,6 +95,15 @@ class RoleController extends Controller
             'update' => $request->veh_update,
             'delete' => $request->veh_delete,
        ]);
+       perm::create([
+            'name' => "leave",
+            'role_id' => $role->id,
+            'create' => $request->leave_create,
+            'view' => $request->leave_view,
+            'edit' => $request->leave_edit,
+            'update' => $request->leave_update,
+            'delete' => $request->leave_delete,
+       ]);
 
         Alert::Success('Success' , "Role Added Successfully");
         return redirect()->route('role.index');
@@ -131,16 +140,17 @@ class RoleController extends Controller
     {
 
         $role = Role::find($id);
-        if($role->id == 1){
-            Alert::error('Error',"Role Not Can't be Edit");
-            return redirect()->route('role.index');
-        }
+        // if($role->id == 1){
+        //     Alert::error('Error',"Role Can't be Edit");
+        //     return redirect()->route('role.index');
+        // }
         $perm_role = perm::where('role_id', $role->id)->where('name', "role")->first();
         $perm_user = perm::where('role_id', $role->id)->where('name', "user")->first();
         $perm_dept = perm::where('role_id', $role->id)->where('name', "dept")->first();
         $perm_desig = perm::where('role_id', $role->id)->where('name', "desig")->first();
         $perm_veh = perm::where('role_id', $role->id)->where('name', "vehicle")->first();
-        return view('role.edit', compact('role','perm_role','perm_user','perm_dept','perm_desig','perm_veh'));
+        $perm_leave = perm::where('role_id', $role->id)->where('name', "leave")->first();
+        return view('role.edit', compact('role','perm_role','perm_user','perm_dept','perm_desig','perm_veh','perm_leave'));
     }
 
     /**
@@ -271,6 +281,28 @@ class RoleController extends Controller
             'edit' => $request->veh_edit,
             'update' => $request->veh_update,
             'delete' => $request->veh_delete,
+        ]);
+    }
+        $perm_leave = perm::where('role_id', $role->id)->where('name', "leave")->first();
+        if($perm_leave != null){
+        $perm_leave->update([
+            'create' => $request->leave_create,
+            'view' => $request->leave_view,
+            'edit' => $request->leave_edit,
+            'update' => $request->leave_update,
+            'delete' => $request->leave_delete,
+        ]);
+    }
+    else
+    {
+        perm::create([
+            'name' => "leave",
+            'role_id' => $role->id,
+            'create' => $request->leave_create,
+            'view' => $request->leave_view,
+            'edit' => $request->leave_edit,
+            'update' => $request->leave_update,
+            'delete' => $request->leave_delete,
         ]);
     }
 

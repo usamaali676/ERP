@@ -4,6 +4,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LeavesController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RoleController;
@@ -99,6 +100,20 @@ Route::controller(DepartmentController::class)
         ->prefix('vehicle')
         ->as('vehicle.')
         ->middleware('ReuseableMiddleware')
+        ->group(function () {
+            Route::get('index', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('store', 'store')->name('store');
+            Route::get('/detail/{id}', 'show')->name('detail');
+            Route::get('edit/{id}', 'edit')->name('edit');
+            Route::post('update/{id}', 'update')->name('update');
+            Route::get('conf-delete/{id}', 'delete')->name('conf-delete');
+            Route::get('delete/{id}','destroy')->name('delete');
+        });
+    Route::controller(LeavesController::class)
+        ->prefix('leave')
+        ->as('leave.')
+        // ->middleware('ReuseableMiddleware')
         ->group(function () {
             Route::get('index', 'index')->name('index');
             Route::get('create', 'create')->name('create');

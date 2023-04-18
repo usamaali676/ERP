@@ -22,7 +22,7 @@
         </div>
         <div class="text-right mt-5">
             <a href="{{ url()->previous() }}"  class="btn btn-outline-secondary w-24 mr-1">Cancel</a>
-            <a href="{{route('vehicle.conf-delete', $vehicle->id)}}" onclick="return confirm('Are you sure you want to delete this item')"  type="submit" class="btn btn-primary w-24">Delete</a>
+            <a href="{{route('vehicle.delete', $vehicle->id)}}" onclick="return confirm('Are you sure you want to delete this item')"  type="submit" class="btn btn-primary w-24">Delete</a>
         </div>
         <!-- END: Content -->
     @endsection

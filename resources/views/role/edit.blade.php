@@ -181,6 +181,36 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="mt-3">
+                            <label for="regular-form-3" class="form-label">Leaves</label>
+                            <div class="flex flex-col sm:flex-row mt-2">
+                                <div class="form-check mr-2">
+                                    <input class="form-check-input" type="hidden" value="0" name="leave_create">
+                                    <input id="checkbox-switch-21" class="form-check-input" type="checkbox" value="1" name="leave_create" @if (isset($perm_leave) && $perm_leave->create == 1) checked @endif>
+                                    <label class="form-check-label" for="checkbox-switch-21">Create</label>
+                                </div>
+                                <div class="form-check mr-2">
+                                    <input class="form-check-input" type="hidden" value="0" name="leave_view">
+                                    <input id="checkbox-switch-22" class="form-check-input" type="checkbox" value="1" name="leave_view" @if (isset($perm_leave) && $perm_leave->view == 1) checked @endif>
+                                    <label class="form-check-label" for="checkbox-switch-22">View</label>
+                                </div>
+                                <div class="form-check mr-2 mt-2 sm:mt-0">
+                                    <input class="form-check-input" type="hidden" value="0" name="leave_edit">
+                                    <input id="checkbox-switch-23" class="form-check-input" type="checkbox" value="1" name="leave_edit" @if (isset($perm_leave) && $perm_leave->edit == 1) checked @endif>
+                                    <label class="form-check-label" for="checkbox-switch-23">Edit</label>
+                                </div>
+                                <div class="form-check mr-2 mt-2 sm:mt-0">
+                                    <input class="form-check-input" type="hidden" value="0" name="leave_update">
+                                    <input id="checkbox-switch-24" class="form-check-input" type="checkbox" value="1" name="leave_update" @if (isset($perm_leave) && $perm_leave->update == 1) checked @endif>
+                                    <label class="form-check-label" for="checkbox-switch-24">Update</label>
+                                </div>
+                                <div class="form-check mr-2 mt-2 sm:mt-0">
+                                    <input class="form-check-input" type="hidden" value="0" name="leave_delete">
+                                    <input id="checkbox-switch-25" class="form-check-input" type="checkbox" value="1" name="leave_delete" @if (isset($perm_leave) && $perm_leave->delete == 1) checked @endif>
+                                    <label class="form-check-label" for="checkbox-switch-25">Delete</label>
+                                </div>
+                            </div>
+                        </div>
 
 
                         <button type="submit" class="btn btn-primary mt-5">Submit</button>

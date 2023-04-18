@@ -1,0 +1,161 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Leaves;
+use App\Models\User;
+use Carbon\CarbonPeriod;
+use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+
+class LeavesController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $leaves = Leaves::with(['user'])->get();
+        $srno = 1;
+        return view('leave.index', compact('leaves', 'srno'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $user = User::all();
+        return view('leave.create', compact('user'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        // dd($request->all());
+        // $request->validate([
+        //     'date' => 'required',
+        //     'duration' => 'required',
+        // ]);
+        // Leaves::create([
+        //     'user_id' => $request->user_id,
+        //     'date' => $request->date,
+        //     'duration' => $request->duration,
+        //     'reason' => $request->reason,
+        //     'leave_type' => $request->leave_type
+        // ]);
+        $leave = new Leaves();
+        $leave->user_id = $request->user_id;
+        if($request->leave_range != null){
+            $leave->date = $request->leave_range;
+        }
+        else
+        {
+            $leave->date = $request->date;
+        }
+        $leave->duration = $request->duration;
+        $leave->reason = $request->reason;
+        $leave->status = $request->status;
+        $leave->leave_type = 0;
+        $leave->save();
+        Alert::success('Success', "Leave Added successfully");
+        return redirect()->route('leave.index');
+
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Leaves  $leaves
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $leave = Leaves::find($id);
+        return view('leave.detail', compact('leave'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Leaves  $leaves
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $leave = Leaves::find($id);
+        // dd($leave);
+        $user = User::all();
+        $selecteduser = User::where('id', $leave->user_id)->first();
+        return view('leave.edit', compact('leave', 'selecteduser', 'user'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Leaves  $leaves
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        // dd($request->all());
+        $request->validate([
+            'date' => 'required',
+            'duration' => 'required',
+        ]);
+
+        $leave['user_id'] = $request->user_id;
+        if($request->leave_range != null){
+            $leave['date'] = $request->leave_range;
+        }
+        else
+        {
+            $leave['date'] = $request->date;
+        }
+        $leave['duration'] = $request->duration;
+        $leave['reason'] = $request->reason;
+        $leave['status'] = $request->status;
+        $leave['leave_type'] = 0;
+        Leaves::where('id', $id)->update($leave);
+        // $leave->update([
+        //     'user_id' => $request->user_id,
+        //     'date' => $request->date,
+        //     'duration' => $request->duration,
+        //     'reason' => $request->reason,
+        //     'leave_type' => $request->leave_type,
+        //     'leave_status' => $request->leave_status
+        // ]);
+        Alert::success('Success', "Leave updated successfully");
+        return redirect()->route('leave.index');
+    }
+
+    public function delete($id)
+    {
+        $leave = Leaves::find($id);
+        return view('leave.delete', compact('leave'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Leaves  $leaves
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy( $id)
+    {
+        $leave = Leaves::find($id);
+        $leave->delete();
+        Alert::success('Success', "Leave deleted successfully");
+        return redirect()->route('leave.index');
+    }
+}

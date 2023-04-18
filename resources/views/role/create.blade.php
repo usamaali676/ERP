@@ -181,6 +181,36 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="mt-3">
+                            <label for="regular-form-3" class="form-label">Leaves</label>
+                            <div class="flex flex-col sm:flex-row mt-2">
+                                <div class="form-check mr-2">
+                                    <input class="form-check-input" type="hidden" value="0" name="leave_create">
+                                    <input id="checkbox-switch-11" class="form-check-input" type="checkbox" value="1" name="leave_create" >
+                                    <label class="form-check-label" for="checkbox-switch-11">Create</label>
+                                </div>
+                                <div class="form-check mr-2">
+                                    <input class="form-check-input" type="hidden" value="0" name="leave_view">
+                                    <input id="checkbox-switch-12" class="form-check-input" type="checkbox" value="1" name="leave_view" >
+                                    <label class="form-check-label" for="checkbox-switch-12">View</label>
+                                </div>
+                                <div class="form-check mr-2 mt-2 sm:mt-0">
+                                    <input class="form-check-input" type="hidden" value="0" name="leave_edit">
+                                    <input id="checkbox-switch-13" class="form-check-input" type="checkbox" value="1" name="leave_edit" >
+                                    <label class="form-check-label" for="checkbox-switch-13">Edit</label>
+                                </div>
+                                <div class="form-check mr-2 mt-2 sm:mt-0">
+                                    <input class="form-check-input" type="hidden" value="0" name="leave_update">
+                                    <input id="checkbox-switch-14" class="form-check-input" type="checkbox" value="1" name="leave_update" >
+                                    <label class="form-check-label" for="checkbox-switch-14">Update</label>
+                                </div>
+                                <div class="form-check mr-2 mt-2 sm:mt-0">
+                                    <input class="form-check-input" type="hidden" value="0" name="leave_delete">
+                                    <input id="checkbox-switch-15" class="form-check-input" type="checkbox" value="1" name="leave_delete" >
+                                    <label class="form-check-label" for="checkbox-switch-15">Delete</label>
+                                </div>
+                            </div>
+                        </div>
 
 
                         <button type="submit" class="btn btn-primary mt-5">Submit</button>
