@@ -4,7 +4,7 @@
 <?php
 // $mperm = App\Models\perm;
 $user = Auth::user();
-$perm = App\Models\perm::where('role_id', $user->role_id)->where('name', "vehicle")->first();
+$perm = App\Models\perm::where('role_id', $user->role_id)->where('name', "leave")->first();
 
 ?>
 @endif
@@ -14,9 +14,9 @@ $perm = App\Models\perm::where('role_id', $user->role_id)->where('name', "vehicl
                 <h2 class="text-lg font-medium mr-auto">
                     Vehicles
                 </h2>
-               {{-- @if ($perm->create == 1)
-               <a href="{{route('vehicle.create')}}" class="btn btn-primary shadow-md mr-2">Add New Vehicle</a>
-               @endif --}}
+               @if ($perm->create == 1)
+               <a href="{{route('leave.create')}}" class="btn btn-primary shadow-md mr-2">Add New Leave</a>
+               @endif
             </div>
                                 <!-- BEGIN: Striped Rows -->
                                 <div class="intro-y box mt-5">
@@ -32,7 +32,7 @@ $perm = App\Models\perm::where('role_id', $user->role_id)->where('name', "vehicl
                                                             <th class="whitespace-nowrap">Duration</th>
                                                             <th class="whitespace-nowrap">Reason</th>
                                                             <th class="whitespace-nowrap">Status</th>
-                                                            {{-- <th class="whitespace-nowrap">Action</th> --}}
+                                                            <th class="whitespace-nowrap">Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -44,7 +44,7 @@ $perm = App\Models\perm::where('role_id', $user->role_id)->where('name', "vehicl
                                                             <td>{{$item->duration}}</td>
                                                             <td>{{$item->reason}}</td>
                                                             <td>@if ($item->status == 1) Approved @else Pending @endif</td>
-                                                             {{-- <td> @if($perm->edit == 1 )<a class="btn btn-warning mr-1 mb-2" href="{{ route('vehicle.edit',$item->id) }}" > <i data-lucide="edit" style="color: #fff" class="w-5 h-5"></i> </a>@endif @if($perm->view == 1)<a href="{{route('vehicle.detail', $item->id)}}" class="btn btn-success mr-1 mb-2"> <i data-lucide="eye" class="w-5 h-5" style="color: #fff"></i> </a>@endif @if($perm->delete == 1  )<a  href="{{route('vehicle.conf-delete', $item->id)}}"  class="btn btn-danger mr-1 mb-2"> <i data-lucide="trash" class="w-5 h-5"></i> </a>@endif </td> --}}
+                                                             <td> @if($perm->edit == 1 )<a class="btn btn-warning mr-1 mb-2" href="{{ route('leave.edit',$item->id) }}" > <i data-lucide="edit" style="color: #fff" class="w-5 h-5"></i> </a>@endif @if($perm->view == 1)<a href="{{route('leave.detail', $item->id)}}" class="btn btn-success mr-1 mb-2"> <i data-lucide="eye" class="w-5 h-5" style="color: #fff"></i> </a>@endif @if($perm->delete == 1  )<a  href="{{route('leave.conf-delete', $item->id)}}"  class="btn btn-danger mr-1 mb-2"> <i data-lucide="trash" class="w-5 h-5"></i> </a>@endif </td>
                                                         </tr>
                                                         @endforeach
 

@@ -113,7 +113,7 @@ Route::controller(DepartmentController::class)
     Route::controller(LeavesController::class)
         ->prefix('leave')
         ->as('leave.')
-        // ->middleware('ReuseableMiddleware')
+        ->middleware('ReuseableMiddleware')
         ->group(function () {
             Route::get('index', 'index')->name('index');
             Route::get('create', 'create')->name('create');

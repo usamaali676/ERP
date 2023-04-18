@@ -9,6 +9,7 @@
         $permdept = App\Models\perm::where('role_id', $user->role_id)->where('name', "dept")->first();
         $permdesig = App\Models\perm::where('role_id', $user->role_id)->where('name', "desig")->first();
         $permveh = App\Models\perm::where('role_id', $user->role_id)->where('name', "vehicle")->first();
+        $permleave = App\Models\perm::where('role_id', $user->role_id)->where('name', "leave")->first();
         ?>
         @endif
 
@@ -164,6 +165,36 @@
                 @if ($permveh->create == 1)
                 <li>
                     <a href="{{route('vehicle.create')}}" class="side-menu">
+                        <div class="side-menu__icon"> <i data-lucide="inbox"></i> </div>
+                        <div class="side-menu__title"> Add Vehicle </div>
+                    </a>
+                </li>
+                @endif
+            </ul>
+        </li>
+        @endif
+        @if ($permleave->view == 1 )
+        <li>
+            <a href="javascript:;" class="side-menu">
+                &nbsp; &nbsp;&nbsp; &nbsp;
+                <div class="side-menu__icon"> <i data-lucide="twitch"></i> </div>
+                <div class="side-menu__title">
+                    Leaves
+                    <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+                </div>
+            </a>
+            <ul class="">
+                @if ($permleave->view == 1)
+                <li>
+                    <a href="{{route('leave.index')}}" class="side-menu">
+                        <div class="side-menu__icon"> <i data-lucide="list"></i> </div>
+                        <div class="side-menu__title"> View Leaves </div>
+                    </a>
+                </li>
+                @endif
+                @if ($permleave->create == 1)
+                <li>
+                    <a href="{{route('leave.create')}}" class="side-menu">
                         <div class="side-menu__icon"> <i data-lucide="inbox"></i> </div>
                         <div class="side-menu__title"> Add Vehicle </div>
                     </a>

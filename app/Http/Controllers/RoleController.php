@@ -140,10 +140,10 @@ class RoleController extends Controller
     {
 
         $role = Role::find($id);
-        // if($role->id == 1){
-        //     Alert::error('Error',"Role Can't be Edit");
-        //     return redirect()->route('role.index');
-        // }
+        if($role->id == 1){
+            Alert::error('Error',"Role Can't be Edit");
+            return redirect()->route('role.index');
+        }
         $perm_role = perm::where('role_id', $role->id)->where('name', "role")->first();
         $perm_user = perm::where('role_id', $role->id)->where('name', "user")->first();
         $perm_dept = perm::where('role_id', $role->id)->where('name', "dept")->first();
