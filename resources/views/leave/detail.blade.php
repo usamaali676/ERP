@@ -18,8 +18,9 @@
                     <b>Date:</b> &nbsp;{{$leave->date}}
                     <br>
                     <br>
-                    <b>Leave Duration:</b> &nbsp;{{$leave->duration}}
-                    <br>
+                    <div class="d-flex" style="display: flex;">
+                        <b>Leave Duration:</b> &nbsp;{{$leave->duration}} @if($range != null) &nbsp; &nbsp;<div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium"> ({{$range}} Days)</div>@endif
+                    </div>
                     <br>
                     <b>Status:</b> &nbsp;@if ($leave->status == 0)
                     Pending

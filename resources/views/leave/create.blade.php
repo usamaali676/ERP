@@ -58,7 +58,7 @@
                                 <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-slate-100 border text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
                                     <i data-lucide="calendar" class="w-4 h-4"></i>
                                 </div>
-                                <input type="text" name="leave_range" data-daterange="true" class="datepicker form-control w-56 block ">
+                                <input type="text" name="leave_range" data-daterange="true" class="datepicker  form-control w-56 block " >
                             </div>
                         </div>
                         <div class="mt-3">
