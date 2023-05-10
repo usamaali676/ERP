@@ -33,6 +33,11 @@
             <div class="font-medium text-center lg:text-left lg:mt-3">Department</div>
             <div class="flex flex-col justify-center items-center lg:items-start mt-2">
             <p>{{$user->department->name}}</p>
+            <p>@if ($user->employment_type == 1)
+                Full Time
+            @else
+                Part Time
+            @endif</p>
             </div>
         </div>
         <div class="mt-6 lg:mt-0 flex-1 px-5 border-l border-r border-slate-200/60 dark:border-darkmode-400 border-t lg:border-t-0 pt-5 lg:pt-0">
@@ -86,6 +91,24 @@
     </div>
     <div class="flex flex-col lg:flex-row border-b border-slate-200/60 dark:border-darkmode-400 pb-5 -mx-5">
         <div class="mt-6 lg:mt-0 flex-1 px-5 border-l border-r border-slate-200/60 dark:border-darkmode-400 border-t lg:border-t-0 pt-5 lg:pt-0">
+            <div class="font-medium text-center lg:text-left lg:mt-3">Gender</div>
+            <div class="flex flex-col justify-center items-center lg:items-start mt-2">
+            <p>{{$user->gender}}</p>
+            </div>
+        </div>
+        <div class="mt-6 lg:mt-0 flex-1 px-5 border-l border-r border-slate-200/60 dark:border-darkmode-400 border-t lg:border-t-0 pt-5 lg:pt-0">
+            <div class="font-medium text-center lg:text-left lg:mt-3">Marital Status</div>
+            <div class="flex flex-col justify-center items-center lg:items-start mt-2">
+            <p>@if ($user->marital_status == 1)
+                Married
+            @else
+                Unmarried
+            @endif</p>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-col lg:flex-row border-b border-slate-200/60 dark:border-darkmode-400 pb-5 -mx-5">
+        <div class="mt-6 lg:mt-0 flex-1 px-5 border-l border-r border-slate-200/60 dark:border-darkmode-400 border-t lg:border-t-0 pt-5 lg:pt-0">
             <div class="font-medium text-center lg:text-left lg:mt-3">Last Degree</div>
             <div class="flex flex-col justify-center items-center lg:items-start mt-2">
             <p>{{$user->lastDegree}}</p>
@@ -98,6 +121,7 @@
             </div>
         </div>
     </div>
+
     <div class="flex flex-col lg:flex-row border-b border-slate-200/60 dark:border-darkmode-400 pb-5 -mx-5">
         <div class="mt-6 lg:mt-0 flex-1 px-5 border-l border-r border-slate-200/60 dark:border-darkmode-400 border-t lg:border-t-0 pt-5 lg:pt-0">
             <div class="font-medium text-center lg:text-left lg:mt-3">Emergency Contact Name</div>

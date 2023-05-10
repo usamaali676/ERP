@@ -87,6 +87,9 @@ class UserController extends Controller
         $add_user->emgContactName = $request->emgContactName;
         $add_user->emgContactRelation = $request->emgContactRelation;
         $add_user->emgContactNumber = $request->emgContactNumber;
+        $add_user->gender = $request->gender;
+        $add_user->marital_status = $request->marital_status ? 1 : 0 ?? 0;
+        $add_user->employment_type = $request->employment_type ? 1 : 0 ?? 0;
     	$add_user->email = $request->email;
     	$add_user->password = Hash::make($request->password);
         $add_user->save();
@@ -181,6 +184,9 @@ class UserController extends Controller
         $user['emgContactName'] = $request->emgContactName;
         $user['emgContactNumber'] = $request->emgContactNumber;
         $user['emgContactRelation'] = $request->emgContactRelation;
+        $user['gender'] = $request->gender;
+        $user['marital_status'] = $request->marital_status ? 1 : 0 ?? 0;
+        $user['employment_type'] = $request->employment_type ? 1 : 0 ?? 0;
         User::where('id', $id)->update($user);
         // $user = User::where('id',$id)->first();
 

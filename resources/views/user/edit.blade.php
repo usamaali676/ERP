@@ -229,6 +229,37 @@
                                 </div>
                             </div>
                             <div class="col-span-12 lg:col-span-6">
+                                <div class="mt-2">
+                                    <label for="regular-form-3" class="form-label">Gender</label>
+                                    <select data-placeholder="Select Gender" class="tom-select w-full" name="gender">
+                                        <option >Please Select</option>
+                                        <option value="Male" @if($user->gender == "Male") selected @endif>Male</option>
+                                        <option value="Female"  @if($user->gender == "Female") selected @endif>Female</option>
+                                        <option value="Others"  @if($user->gender == "Others") selected @endif>Others</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-12 gap-6 mt-3">
+                            <div class="col-span-12 lg:col-span-6">
+                                <div class="mt-2">
+                                    <label for="regular-form-3" class="form-label">Marital Status</label>
+                                    <select data-placeholder="Select Marital Status" class="tom-select w-full" name="marital_status">
+                                        <option >Please Select</option>
+                                        <option value="0" @if($user->marital_status == 0) selected @endif>Unmarried</option>
+                                        <option value="1" @if($user->marital_status == 1) selected @endif>Married</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-span-12 lg:col-span-6">
+                                <div class="mt-2">
+                                    <label for="regular-form-3" class="form-label">Employment Type</label>
+                                    <select data-placeholder="Select Employment Type" class="tom-select w-full" name="employment_type">
+                                        <option >Please Select</option>
+                                        <option value="0" @if($user->employment_type == 0) selected @endif>Part Time</option>
+                                        <option value="1" @if($user->employment_type == 1) selected @endif>Full Time</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="grid grid-cols-12 gap-6 mt-5">

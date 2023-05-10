@@ -208,11 +208,37 @@
                                 </div>
                             </div>
                             <div class="col-span-12 lg:col-span-6">
-                                {{-- <div class="mt-2">
-                                    <label for="regular-form-3" class="form-label">Emergency Contact Number</label>
-                                    <input id="regular-form-3" name="emgContactNumber" type="text" class="form-control"
-                                        placeholder="Emergency Contact Number">
-                                </div> --}}
+                                <div class="mt-2">
+                                    <label for="regular-form-3" class="form-label">Gender</label>
+                                    <select data-placeholder="Select Gender" class="tom-select w-full" name="gender">
+                                        <option >Please Select</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-12 gap-6 mt-3">
+                            <div class="col-span-12 lg:col-span-6">
+                                <div class="mt-2">
+                                    <label for="regular-form-3" class="form-label">Marital Status</label>
+                                    <select data-placeholder="Select Marital Status" class="tom-select w-full" name="marital_status">
+                                        <option >Please Select</option>
+                                        <option value="0">Unmarried</option>
+                                        <option value="1">Married</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-span-12 lg:col-span-6">
+                                <div class="mt-2">
+                                    <label for="regular-form-3" class="form-label">Employment Type</label>
+                                    <select data-placeholder="Select Employment Type" class="tom-select w-full" name="employment_type">
+                                        <option >Please Select</option>
+                                        <option value="0">Part Time</option>
+                                        <option value="1">Full Time</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="grid grid-cols-12 gap-6 mt-3">
