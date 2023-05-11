@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHolidaysTable extends Migration
+class AddPlToLeavesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateHolidaysTable extends Migration
      */
     public function up()
     {
-        Schema::create('holidays', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->date('start');
-            $table->date('end');
-            $table->timestamps();
+        Schema::table('leaves', function (Blueprint $table) {
+            $table->tinyInteger('pl')->default(6);
+            $table->tinyInteger('el')->default(6);
         });
     }
 
@@ -29,6 +26,8 @@ class CreateHolidaysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('holidays');
+        Schema::table('leaves', function (Blueprint $table) {
+            //
+        });
     }
 }

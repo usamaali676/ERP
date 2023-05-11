@@ -106,6 +106,21 @@
 
                             </div>
                         </div>
+                        <div class="mt-3">
+                            <div class="grid grid-cols-12 gap-6 mt-5">
+                                <div class="intro-y col-span-12 lg:col-span-6">
+                                        <div class="form-group my-3">
+                                            <label class="f-14 text-dark-grey mb-12 w-100" for="usr">Select Duration</label>
+                                            <input type="text"  class="form-control mt-3" value="{{$leave->pl}}">
+                                        </div>
+                                </div>
+                                <div class="intro-y col-span-12 lg:col-span-6">
+                                    <label for="vehicle-type">Leave Status</label>
+                                    <input type="text"  class="form-control mt-3" value="{{$leave->el}}">
+                                </div>
+
+                            </div>
+                        </div>
 
 
                         <button type="submit" class="btn btn-primary mt-5">Submit</button>
