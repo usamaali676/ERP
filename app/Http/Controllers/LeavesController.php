@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\GlobalHelper;
 use App\Models\Leaves;
+use App\Models\PaidLeaves;
 use App\Models\User;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
@@ -69,6 +70,11 @@ class LeavesController extends Controller
         //     'reason' => $request->reason,
         //     'leave_type' => $request->leave_type
         // ]);
+        $user = User::find($request->user_id);
+        $paid_leaves = PaidLeaves::where('user_id', $user->id)->first();
+        // dd($paid_leaves->preplan);
+        $remain = $paid_leaves->preplan + $paid_leaves->emergency;
+        // dd($remain);
         $leave = new Leaves();
         $leave->user_id = $request->user_id;
         if($request->duration == "Multiple"){
@@ -82,7 +88,16 @@ class LeavesController extends Controller
         $leave->duration = $request->duration;
         $leave->reason = $request->reason;
         $leave->status = $request->status;
+        if($remain > 0)
+        {
+        $leave->leave_type = 1;
+        $paid_leaves->update([
+            'preplan' => $paid_leaves->preplan - 1,
+        ]);
+        }
+        else{
         $leave->leave_type = 0;
+        }
         $leave->save();
         Alert::success('Success', "Leave Added successfully");
         return redirect()->route('leave.index');
@@ -116,10 +131,11 @@ class LeavesController extends Controller
     public function edit($id)
     {
         $leave = Leaves::find($id);
-        // dd($leave);
+        $user_id = $leave->user_id;
+        $paid_leaves = PaidLeaves::where('user_id', $user_id)->first();
         $user = User::all();
         $selecteduser = User::where('id', $leave->user_id)->first();
-        return view('leave.edit', compact('leave', 'selecteduser', 'user'));
+        return view('leave.edit', compact('leave', 'selecteduser', 'user','paid_leaves'));
     }
 
     /**
@@ -132,6 +148,8 @@ class LeavesController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request->all());
+        $paid_leaves = PaidLeaves::where('user_id', $request->user_id)->first();
+        $remain = $paid_leaves->preplan + $paid_leaves->emergency;
         $request->validate([
             'date' => 'required',
             'duration' => 'required',
@@ -148,7 +166,17 @@ class LeavesController extends Controller
         $leave['duration'] = $request->duration;
         $leave['reason'] = $request->reason;
         $leave['status'] = $request->status;
-        $leave['leave_type'] = 0;
+        if($remain > 0)
+        {
+            $leave['leave_type'] = 1;
+        $paid_leaves->update([
+            'preplan' => $paid_leaves->preplan - 1,
+        ]);
+        }
+        else{
+        $$leave['leave_type'] = 0;
+        }
+
         Leaves::where('id', $id)->update($leave);
         // $leave->update([
         //     'user_id' => $request->user_id,
@@ -180,5 +208,12 @@ class LeavesController extends Controller
         $leave->delete();
         Alert::success('Success', "Leave deleted successfully");
         return redirect()->route('leave.index');
+    }
+    public function paidleaves(Request $request)
+    {
+        if($request->ajax()){
+            $user_leaves = PaidLeaves::where('user_id', $request->user)->first();
+            return response()->json(['user_leaves' => $user_leaves]);
+        }
     }
 }

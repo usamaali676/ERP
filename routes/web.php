@@ -34,6 +34,7 @@ Route::get('/config-cache', function() {
 Route::get('/', function () {
    return redirect()->route('home');
 });
+Route::get('/paidleaves', [LeavesController::class, 'paidleaves'])->name('paidleaves');
 
 Auth::routes([
     'register' => false,

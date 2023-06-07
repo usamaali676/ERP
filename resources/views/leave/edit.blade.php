@@ -27,7 +27,7 @@
                             <div class="grid grid-cols-12 gap-6 mt-5">
                                 <div class=" col-span-12 lg:col-span-6">
                                     <label for="vehicle-type">Select User</label>
-                                    <select name="user_id" id="" data-placeholder="Select User" class="tom-select w-full mt-2" >
+                                    <select name="user_id" id="userselect" data-placeholder="Select User" class="tom-select w-full mt-2" >
                                         @if ($selecteduser != null)
                                         <option value="{{$selecteduser->id}}" selected>{{$selecteduser->name}}</option>
                                         @else
@@ -106,6 +106,21 @@
 
                             </div>
                         </div>
+                        <div class="mt-3">
+                            <div class="grid grid-cols-12 gap-6 mt-5">
+                                <div class="intro-y col-span-12 lg:col-span-6">
+                                        <div class="form-group my-3">
+                                            <label for="vehicle-type">Pre-Plan Leaves</label>
+                                            <input type="text" class="form-control" name="" value="{{$paid_leaves->preplan}}" id="preplan" disabled>
+                                        </div>
+                                </div>
+                                <div class="intro-y col-span-12 lg:col-span-6">
+                                    <label for="vehicle-type">Emergency Leaves</label>
+                                    <input type="text" class="form-control" name="" value="{{$paid_leaves->emergency}}" id="emergency" disabled>
+                                </div>
+
+                            </div>
+                        </div>
 
 
                         <button type="submit" class="btn btn-primary mt-5">Submit</button>
@@ -130,4 +145,27 @@
     }
 
     }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+
+        $(document).ready(function() {
+        $("#userselect").on('change', function(){
+            // alert("work");
+            var user = $(this).val();
+
+            $.ajax({
+                url: "{{route('paidleaves')}}",
+                type: "GET",
+                data: {'user' : user},
+                success: function(data) {
+                    console.log(data);
+                    var leave = data.user_leaves;
+                    $('#preplan').val(leave['preplan']);
+                    $('#emergency').val(leave['emergency']);
+                }
+            })
+    });
+});
+
     </script>

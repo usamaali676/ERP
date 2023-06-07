@@ -244,6 +244,22 @@
                         <div class="grid grid-cols-12 gap-6 mt-3">
                             <div class="col-span-12 lg:col-span-6">
                                 <div class="mt-2">
+                                    <label for="regular-form-3" class="form-label">Pre Plan Leaves</label>
+                                    <input id="regular-form-3" name="preplan" type="number" class="form-control" placeholder="Pre Plan Leaves" min="0" max="6">
+                                </div>
+                            </div>
+                            <div class="col-span-12 lg:col-span-6">
+                                <div class="mt-2">
+                                    <label for="regular-form-3" class="form-label">Emergency Leaves</label>
+                                    <input id="regular-form-3" name="emergency" type="number" class="form-control" min="0" max="6"
+                                        placeholder="Emergency Leaves" >
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="grid grid-cols-12 gap-6 mt-3">
+                            <div class="col-span-12 lg:col-span-6">
+                                <div class="mt-2">
                                     <label for="regular-form-3" class="form-label">Email</label>
                                     <input id="regular-form-3" name="email" type="email" class="form-control" placeholder="Email">
                                 </div>
@@ -257,29 +273,6 @@
                             </div>
 
                         </div>
-                        {{-- <div class="grid grid-cols-12 gap-6 mt-3">
-                            <div class="col-span-12 lg:col-span-6">
-                                <div class="mt-2">
-                                    <label for="regular-form-3" class="form-label">User is Agent</label>
-                                    <div class="form-check mr-2">
-                                        <input class="form-check-input" type="hidden" value="0" name="is_agent">
-                                        <input id="checkbox-switch-16" class="form-check-input" type="checkbox" value="1" name="is_agent" >
-                                        <label class="form-check-label" for="checkbox-switch-16">Agent</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-span-12 lg:col-span-6">
-                                <div class="mt-2">
-                                    <label for="regular-form-3" class="form-label">User is Closer</label>
-                                    <div class="form-check mr-2">
-                                        <input class="form-check-input" type="hidden" value="0" name="is_closer">
-                                        <input id="checkbox-switch-17" class="form-check-input" type="checkbox" value="1" name="is_closer" >
-                                        <label class="form-check-label" for="checkbox-switch-17">Closer</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div> --}}
                         <button type="submit" class="btn btn-primary mt-3">Submit</button>
                     </form>
                 </div>

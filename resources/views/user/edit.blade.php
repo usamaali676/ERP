@@ -262,6 +262,22 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="grid grid-cols-12 gap-6 mt-3">
+                            <div class="col-span-12 lg:col-span-6">
+                                <div class="mt-2">
+                                    <label for="regular-form-3" class="form-label">Pre Plan Leaves</label>
+                                    <input id="regular-form-3" name="preplan" type="number" value="{{$paidleaves->preplan}}" class="form-control" placeholder="Pre Plan Leaves" min="0" max="6">
+                                </div>
+                            </div>
+                            <div class="col-span-12 lg:col-span-6">
+                                <div class="mt-2">
+                                    <label for="regular-form-3" class="form-label">Emergency Leaves</label>
+                                    <input id="regular-form-3" name="emergency" type="number" value="{{$paidleaves->emergency}}" class="form-control" min="0" max="6"
+                                        placeholder="Emergency Leaves" >
+                                </div>
+                            </div>
+
+                        </div>
                         <div class="grid grid-cols-12 gap-6 mt-5">
                             <div class="col-span-12 lg:col-span-6">
                                 <div class="mt-3">

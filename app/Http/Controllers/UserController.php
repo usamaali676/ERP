@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use App\Models\Designation;
+use App\Models\PaidLeaves;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Role;
@@ -93,6 +94,12 @@ class UserController extends Controller
     	$add_user->email = $request->email;
     	$add_user->password = Hash::make($request->password);
         $add_user->save();
+
+        PaidLeaves::insert([
+            'user_id' => $add_user->id,
+            'preplan' => $request->preplan,
+            'emergency' => $request->emergency
+        ]);
         Alert::success('Success','User Added Successfully');
     	return redirect()->route('user.index');
     }
@@ -135,7 +142,8 @@ class UserController extends Controller
         $department = Department::all();
         $selectedVehicle = Vehicle::where('id',$user->vehicle_id)->first();
         $vehicle = Vehicle::all();
-        return view('user.edit', compact('user', 'role','selectedRole','designation','department','vehicle','selectedDesig','selectedDept','selectedVehicle'));
+        $paidleaves = PaidLeaves::where('user_id',$user->id)->first();
+        return view('user.edit', compact('user', 'role','selectedRole','designation','department','vehicle','selectedDesig','selectedDept','selectedVehicle','paidleaves'));
     }
 
     /**
@@ -188,6 +196,14 @@ class UserController extends Controller
         $user['marital_status'] = $request->marital_status ? 1 : 0 ?? 0;
         $user['employment_type'] = $request->employment_type ? 1 : 0 ?? 0;
         User::where('id', $id)->update($user);
+        $paidleaves = PaidLeaves::where('user_id', $id)->first();
+        $paidleaves->update(
+            [
+                'user_id' => $id,
+                'preplan' => $request->preplan,
+                'emergency' => $request->emergency
+            ]
+        );
         // $user = User::where('id',$id)->first();
 
         // dd($user);
